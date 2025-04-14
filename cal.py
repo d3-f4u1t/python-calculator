@@ -13,6 +13,7 @@ def div(x,y):
     if y == 0:
         return "error: can not divide by 0"
     return x / y
+
 if __name__ == "__main__":
     print('this is a simple calculator')
     print("pls select a operation:")
