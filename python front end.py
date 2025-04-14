@@ -24,7 +24,7 @@ def click(event): # function to handle button clicks
 
             elif '-' in expression:
                 num1, num2 = expression.split('-')
-                result = sub(float(num1, float(num2)))
+                result = sub(float(num1), float(num2))
 
             elif '*' in expression:
                 num1, num2 = expression.split('*')
