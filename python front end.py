@@ -1,4 +1,7 @@
+# this is an app/FRONT end for the simple ass calculator
 import tkinter as tk
+import tkinter.messagebox as msg #this is for pop ups and all
+
 from cal import add,sub,mul,div #importing my other file of calculator
 app = tk.Tk()# for main window
 app.title("calculator")
@@ -7,15 +10,49 @@ app.geometry("300x400")
 
 
 # Create the entry (input) field for the calculator
-entry = tk.Entry(app, font="Arial 20")
+entry = tk.Entry(app, font="Arial 14")
 entry.pack(pady=10)
+#type test------------------------------------------
+entry.insert(0,"YOU can even type in this")
+entry.config(fg = "grey")
+
+#to remove------------------------------------
+# idk what the hell this shi is
+def on_click(event):
+    if entry.get()  == "YOU can even type in this":
+        entry.delete(0,tk.END)
+        entry.config(fg = "black")
+
+# Remove the placeholder text when a button is clicked  
+
+entry.bind('<FocusIn>', on_click)
 
 def click(event): # function to handle button clicks
     # Get the text of the button that was clicked
     text = event.widget.cget("text")
 
+
+    if entry.get() == "YOU can even type in this":
+        entry.delete(0, tk.END)
+        entry.config(fg="black")
+
+
+
+
     if text == "=":
         expression = entry.get() #gets the current input
+
+
+        #this is just some easter eggs nthg imp
+        if expression == "hello":
+            msg.showinfo("yo wassup", "YOU FOUND AN EASTER EGG")
+            return
+        elif expression == "rickroll":
+            msg.showinfo("NEVER GONNA", "GIVE YOU UP...")
+            return
+        elif expression == "good":
+            msg.showinfo("well thats great", "good to know")
+            return
 
         try:
             if '+' in expression:
@@ -42,6 +79,8 @@ def click(event): # function to handle button clicks
         except Exception:
             entry.delete(0, tk.END)
             entry.insert(tk.END, "error")
+            msg.showerror("Calculation Error", f"yo dumbass this is still in progress:\n")
+
 
     elif text == 'C':
         entry.delete(0, tk.END)
@@ -137,6 +176,9 @@ btnADD.bind("<Button-1>",click)
 btnSUB = tk.Button(row4, text = '-', font = 'Arial 18', width = 4, height = 2)
 btnSUB.pack(side = tk.LEFT, padx = 5, pady = 5)
 btnSUB.bind("<Button-1>",click)
+
+
+app.bind("<Return>", click)
 
 
 app.mainloop() #stat the app should be in the end of the code
