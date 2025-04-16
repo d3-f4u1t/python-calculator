@@ -4,8 +4,63 @@ import tkinter.messagebox as msg #this is for pop ups and all
 
 from cal import add,sub,mul,div #importing my other file of calculator
 app = tk.Tk()# for main window
+dark_mode = True # this is for dark mode
+
+
+
+colors = {
+    "light": {
+        "bg": "#f0f0f0",
+        "fg": "#000000",
+        "btn_bg": "#ffffff",
+        "btn_fg": "#000000",
+        "entry_bg": "#ffffff",
+        "entry_fg": "#000000"},
+
+    "dark": {
+        "bg": "#121212",
+        "fg": "#ffffff",
+        "btn_bg": "#333333",
+        "btn_fg": "#ffffff",
+        "entry_bg": "white",
+        "entry_fg": "white"}
+}
+
+
 app.title("calculator")
 app.geometry("300x400")
+app.resizable(False, False)  # disables both width and height resizing
+
+def apply_theme(toggle_btn):
+    theme = "dark" if dark_mode else "light"
+    app.config(bg = colors [theme]["bg"])
+    entry.config(bg=colors[theme]["entry_bg"], fg = colors[theme]["entry_fg"])
+    for row in [row1, row2, row3, row4]:
+        row.config(bg = colors[theme]["bg"])
+        for button in [bt1, bt2, bt3, bt4, bt5, bt6, bt7, bt8, bt9, bt0, btnADD, btnSUB, btEQ, btC]:
+            button.config(bg = colors[theme]["btn_bg"], fg = colors[theme]["btn_fg"])
+
+    
+        
+
+    toggle_btn.config(bg = colors[theme]["btn_bg"], fg = colors[theme]["btn_fg"])
+
+
+#DARK MODE TOGGLE BUTTON
+toggle_row = tk.Frame(app)
+toggle_row.pack(pady=10)
+
+def toggle_dark_mode():
+    global dark_mode
+    dark_mode = not dark_mode
+    apply_theme(toggle_btn)
+
+toggle_btn = tk.Button(toggle_row, text="🌙 Toggle Dark Mode", font="Arial 12", command=toggle_dark_mode)
+toggle_btn.pack()
+
+
+
+
 
 
 
@@ -178,7 +233,13 @@ btnSUB.pack(side = tk.LEFT, padx = 5, pady = 5)
 btnSUB.bind("<Button-1>",click)
 
 
-app.bind("<Return>", click)
+app.bind("<Return>", click)#this isnt working for now (for enter key bind to "=")
 
+
+
+
+
+
+apply_theme(toggle_btn)
 
 app.mainloop() #stat the app should be in the end of the code
