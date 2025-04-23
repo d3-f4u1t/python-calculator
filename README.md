@@ -2,7 +2,7 @@
 
 ### Welcome to my **Python Calculator** project!
 
-I'm a student about to start my BTech in Cyber Security and currently learning the fundamentals of programming and computer science. I built this simple Python calculator using **Tkinter** for the front-end and **Python functions** for the back-end. 
+I've built this simple Python calculator using **Tkinter** for the front-end and **Python functions** for the back-end. 
 
 ### 🎯 About This Project
 
